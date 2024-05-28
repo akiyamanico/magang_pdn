@@ -1,7 +1,7 @@
 @extends('home.template')
 
 @section('title')
-Tambah Mapel
+Edit Mapel
 @endsection
 
 @section('content')
