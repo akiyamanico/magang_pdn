@@ -18,32 +18,26 @@ class AuthController extends Controller
 {
   public function loginpage()
   {
-    return view('frontend/auth/login');
+    return view('frontend.auth.login');
   }
 
   public function login(LoginRequest $r)
   {
-    if ($r->validated()) {
-      if (
-        Auth::guard('web')->attempt(
-          [
-            'email' => $r->email,
-            'password' => $r->password
-          ]
-        )
-      ) {
-        return redirect('home')->with('pesan', $r->email);;
-      } else {
-        return back()->with('pesan', 'Email atau Password Salah!');
-      }
+    if($r->validated()){
+      if(Auth::guard('web')->attempt([
+        'email'=> $r->email,
+        'password'=> $r->password])){
+          return redirect('home')->with('pesan','Logged In');
+        }else{
+          return back()->with('pesan','Email atau Password Salah!');
+        }
     }
-    return back()->withErrors($r->errors());
   }
 
   public function logout()
   {
-    auth()->logout();
-    return redirect('home');
+    Auth::logout();
+    return redirect('/loginpage');
   }
 
   public function daftar()
@@ -59,7 +53,7 @@ class AuthController extends Controller
         'email' => $r->email,
         'password' => Hash::make($r->password),
       ]);
-      return redirect('/')->with('pesan', 'Registrasi Berhasil');
+      return redirect('/loginpage')->with('pesan', 'Registrasi Berhasil');
     }
   }
 

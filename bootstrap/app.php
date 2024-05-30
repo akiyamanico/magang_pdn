@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\BelumLogin;
+use App\Http\Middleware\SesudahLogin;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -11,7 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'belum_login' => BelumLogin::class,
+            'sudah_login' => SesudahLogin::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
