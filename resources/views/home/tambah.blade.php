@@ -1,7 +1,7 @@
 @extends('home.template')
 
 @section('title')
-Edit Data
+Tambah Data
 @endsection
 
 @section('content')
