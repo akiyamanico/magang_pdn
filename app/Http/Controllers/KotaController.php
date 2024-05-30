@@ -24,7 +24,7 @@ class KotaController extends Controller
                 'id_provinsi' => $r->id_provinsi,
                 'nama_kota' => $r->nama_kota,
             ]);
-            return         redirect('/kota');
+            return redirect('/kota');
         }
 
     }
