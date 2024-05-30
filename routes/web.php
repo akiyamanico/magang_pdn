@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 
 Route::middleware('belum_login')->group(function () {
     //GET
+    Route::get('/', [AuthController::class, 'loginpage'])->name('/');
     Route::get('loginpage', [AuthController::class, 'loginpage'])->name('loginpage');
     Route::get('register', [AuthController::class, 'daftar'])->name('register');
     //POST
